@@ -5,7 +5,7 @@ services:
     ports:
       - "5432:5432"
   api:
-    image: spring-boot-rest-postgres
+    image: spring-boot-postgres
     ports:
       - "8080:8080"
     links:
