@@ -1,0 +1,1 @@
+INSERT INTO public.channel (channel_id, channel_name) VALUES (10, 'Retail'), (11, 'Partner'), (12, 'Direct Sale'), (13, 'Branded') ON CONFLICT (channel_id) DO NOTHING
