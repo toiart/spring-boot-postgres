@@ -1,12 +1,9 @@
-package com.example.model;
+package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-/**
- * Created by Art on 11/24/16.
- */
 @Entity
 public class BookDetail {
 

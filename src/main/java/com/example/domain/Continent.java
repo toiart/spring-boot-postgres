@@ -1,13 +1,10 @@
-package com.example.model;
+package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created by Art on 11/24/16.
- */
 @Entity
 public class Continent {
 

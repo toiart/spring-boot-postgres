@@ -1,13 +1,10 @@
-package com.example.model;
+package com.example.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by Art on 11/24/16.
- */
 @Entity
 public class Product {
 

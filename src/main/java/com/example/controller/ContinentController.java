@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.model.Continent;
-import com.example.model.Country;
+import com.example.domain.Continent;
+import com.example.domain.Country;
 import com.example.service.ContinentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by Art on 11/24/16.
- */
 @RestController
 public class ContinentController {
 

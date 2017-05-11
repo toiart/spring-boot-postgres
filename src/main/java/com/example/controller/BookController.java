@@ -1,9 +1,7 @@
 package com.example.controller;
 
-import com.example.model.Book;
-import com.example.model.Product;
+import com.example.domain.Book;
 import com.example.service.BookService;
-import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by Art on 11/24/16.
- */
 @RestController
 public class BookController {
 

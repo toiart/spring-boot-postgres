@@ -1,7 +1,7 @@
 package com.example.repository;
 
-import com.example.model.News;
-import com.example.model.NewsStatus;
+import com.example.domain.News;
+import com.example.domain.NewsStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.model.News;
-import com.example.model.NewsStatus;
+import com.example.domain.News;
+import com.example.domain.NewsStatus;
 import com.example.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,10 +1,7 @@
-package com.example.model;
+package com.example.domain;
 
 import javax.persistence.*;
 
-/**
- * Created by Art on 11/24/16.
- */
 @Entity
 public class Book {
 
