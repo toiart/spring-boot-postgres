@@ -1,7 +1,10 @@
 package com.example.controller;
 
 import com.example.domain.News;
+import com.example.domain.NewsHistory;
 import com.example.domain.NewsStatus;
+import com.example.repository.keys.NewsHistoryKey;
+import com.example.service.NewsHistoryService;
 import com.example.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +22,9 @@ public class NewsController {
 
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    NewsHistoryService newsHistoryService;
 
     @GetMapping("/news")
     public ResponseEntity<Page<News>> getNewsList() {
@@ -42,6 +48,32 @@ public class NewsController {
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody News news) {
         newsService.saveNews(news);
+    }
+
+
+    @PutMapping("/news/{id}/user/{userId}/like")
+    public ResponseEntity<Void> likeNews(@PathVariable Long id, @PathVariable String userId) {
+
+        News news = newsService.getNews(id);
+        if (news == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        newsHistoryService.saveNewsHistory(new NewsHistory(new NewsHistoryKey(id, userId, "like")));
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PutMapping("/news/{id}/user/{userId}/unlike")
+    public ResponseEntity<Void> unLikeNews(@PathVariable Long id, @PathVariable String userId) {
+
+        News news = newsService.getNews(id);
+        if (news == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        NewsHistory newsHistory = newsHistoryService.getNewsHistory(new NewsHistoryKey(id, userId, "like"));
+        if (newsHistory == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        newsHistoryService.deleteNewsHistory(newsHistory);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/news/{id}")
