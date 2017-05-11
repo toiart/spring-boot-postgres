@@ -23,7 +23,7 @@ public class BookController {
     @PostMapping(path = "/book")
     public ResponseEntity<Void> createBook(@RequestBody Book book) {
         bookService.saveBook(book);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/book/{id}")
@@ -32,11 +32,11 @@ public class BookController {
         try {
             Book book = bookService.getBook(new Integer(bookId));
             if (book == null) {
-                return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<Book>(book, HttpStatus.OK);
+            return new ResponseEntity(book, HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -45,12 +45,12 @@ public class BookController {
 
         try {
             if (bookService.getBook(new Integer(bookId)) == null) {
-                return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             bookService.deleteBook(new Integer(bookId));
-            return new ResponseEntity<Book>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

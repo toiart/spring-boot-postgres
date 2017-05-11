@@ -5,14 +5,18 @@ import javax.persistence.*;
 @Entity
 public class Book {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookId;
+
     private String bookName;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_detail_id")
     private BookDetail bookDetail;
 
     public Book() {
     }
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getBookId() {
         return bookId;
     }
@@ -29,8 +33,6 @@ public class Book {
         this.bookName = bookName;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_detail_id")
     public BookDetail getBookDetail() {
         return bookDetail;
     }

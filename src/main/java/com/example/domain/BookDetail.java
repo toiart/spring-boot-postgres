@@ -7,14 +7,18 @@ import javax.persistence.*;
 @Entity
 public class BookDetail {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookDetailId;
+
     private Integer numberOfPages;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "bookDetail")
     private Book book;
 
     public BookDetail() {
     }
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getBookDetailId() {
         return bookDetailId;
     }
@@ -31,8 +35,6 @@ public class BookDetail {
         this.numberOfPages = numberOfPages;
     }
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "bookDetail")
     public Book getBook() {
         return book;
     }

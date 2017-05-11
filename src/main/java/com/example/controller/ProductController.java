@@ -23,10 +23,10 @@ public class ProductController {
     @RequestMapping(path = "/product", method = RequestMethod.POST)
     public ResponseEntity<Void> createProduct(@RequestBody Product product) {
         if (productService.getProductName(product.getProductName()) != null) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity(HttpStatus.CONFLICT);
         }
         productService.saveProduct(product);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @RequestMapping(path = "/product/{id}")
@@ -35,11 +35,11 @@ public class ProductController {
         try {
             Product product = productService.getProduct(new Integer(productId));
             if (product == null) {
-                return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<Product>(product, HttpStatus.OK);
+            return new ResponseEntity(product, HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -48,12 +48,12 @@ public class ProductController {
 
         try {
             if (productService.getProduct(new Integer(productId)) == null) {
-                return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             productService.deleteProduct(new Integer(productId));
-            return new ResponseEntity<Product>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 }
