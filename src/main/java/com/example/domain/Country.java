@@ -7,23 +7,19 @@ import javax.persistence.*;
 @Entity
 public class Country {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer countryId;
+
     private String countryName;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "continent_id")
     private Continent continent;
 
     public Country() {
     }
 
-    public Country(Continent continent) {
-        this.continent = continent;
-    }
-
-    public Country(String countryName, Continent continent) {
-        this.countryName = countryName;
-        this.continent = continent;
-    }
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getCountryId() {
         return countryId;
     }
@@ -40,9 +36,6 @@ public class Country {
         this.countryName = countryName;
     }
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "continent_id")
     public Continent getContinent() {
         return continent;
     }

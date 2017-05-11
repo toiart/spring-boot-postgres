@@ -8,14 +8,18 @@ import java.util.Set;
 @Entity
 public class Continent {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer continentId;
+
     private String continentName;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "continent", cascade = CascadeType.ALL)
     private Set<Country> countries;
 
     public Continent() {
     }
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getContinentId() {
         return continentId;
     }
@@ -32,8 +36,6 @@ public class Continent {
         this.continentName = continentName;
     }
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "continent", cascade = CascadeType.ALL)
     public Set<Country> getCountries() {
         return countries;
     }

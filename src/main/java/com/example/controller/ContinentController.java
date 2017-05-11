@@ -24,13 +24,13 @@ public class ContinentController {
     @PostMapping(path = "/continent")
     public ResponseEntity<Void> createContinent(@RequestBody Continent continent) {
         continentService.saveContinent(continent);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/country")
     public ResponseEntity<Void> createCountry(@RequestBody Country country) {
         continentService.saveCountry(country);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/continent/{id}")
@@ -39,11 +39,11 @@ public class ContinentController {
         try {
             Continent continent = continentService.getContinent(new Integer(continentId));
             if (continent == null) {
-                return new ResponseEntity<Continent>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<Continent>(continent, HttpStatus.OK);
+            return new ResponseEntity(continent, HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Continent>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -52,12 +52,12 @@ public class ContinentController {
 
         try {
             if (continentService.getContinent(new Integer(continentId)) == null) {
-                return new ResponseEntity<Continent>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
             continentService.deleteContinent(new Integer(continentId));
-            return new ResponseEntity<Continent>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity<Continent>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 }
