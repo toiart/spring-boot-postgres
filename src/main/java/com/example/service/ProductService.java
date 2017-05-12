@@ -4,6 +4,8 @@ import com.example.domain.Product;
 import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -24,11 +26,22 @@ public class ProductService {
         return (List<Product>) productRepository.findAll();
     }
 
-    public void saveProduct(Product product) {
+    @Transactional(rollbackFor = Exception.class)
+    public void saveProduct(Product product) throws Exception {
         productRepository.save(product);
+
+        if (product.getProductId() == 4) {
+            throw new Exception("Save Product Rollback");
+        }
     }
 
+    // Default rollback is throws runtime exception
+    @Transactional
     public void deleteProduct(Integer productId) {
         productRepository.delete(productId);
+
+        if (productId == 2) {
+            throw new RuntimeException("Delete Product Roolback");
+        }
     }
 }

@@ -15,13 +15,13 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping(path = "/products")
+    @GetMapping(path = "/products")
     public List<Product> getProducts() {
         return productService.getProductList();
     }
 
-    @RequestMapping(path = "/product", method = RequestMethod.POST)
-    public ResponseEntity<Void> createProduct(@RequestBody Product product) {
+    @PostMapping(path = "/product")
+    public ResponseEntity<Void> createProduct(@RequestBody Product product) throws Exception {
         if (productService.getProductName(product.getProductName()) != null) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
@@ -29,7 +29,7 @@ public class ProductController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/product/{id}")
+    @GetMapping(path = "/product/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") String productId) {
 
         try {
@@ -43,7 +43,7 @@ public class ProductController {
         }
     }
 
-    @RequestMapping(path = "/product/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(path = "/product/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable("id") String productId) {
 
         try {
