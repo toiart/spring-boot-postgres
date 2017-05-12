@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.domain.News;
-import com.example.domain.NewsStatus;
+import com.example.model.enums.NewsStatus;
 import com.example.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

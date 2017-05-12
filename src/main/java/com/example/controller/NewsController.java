@@ -2,7 +2,7 @@ package com.example.controller;
 
 import com.example.domain.News;
 import com.example.domain.NewsHistory;
-import com.example.domain.NewsStatus;
+import com.example.model.enums.NewsStatus;
 import com.example.repository.keys.NewsHistoryKey;
 import com.example.service.NewsHistoryService;
 import com.example.service.NewsService;

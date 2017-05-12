@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.example.model.enums.NewsStatus;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
