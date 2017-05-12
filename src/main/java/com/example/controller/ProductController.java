@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.domain.Product;
+import com.example.exception.EntityNotFoundException;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,11 +36,11 @@ public class ProductController {
         try {
             Product product = productService.getProduct(new Integer(productId));
             if (product == null) {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
+                throw new EntityNotFoundException("100", "Entity Not Found");
             }
             return new ResponseEntity(product, HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            throw new EntityNotFoundException("100", "Entity Not Found");
         }
     }
 
@@ -48,12 +49,12 @@ public class ProductController {
 
         try {
             if (productService.getProduct(new Integer(productId)) == null) {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
+                throw new EntityNotFoundException("100", "Entity Not Found");
             }
             productService.deleteProduct(new Integer(productId));
             return new ResponseEntity(HttpStatus.OK);
         } catch (NumberFormatException nfe) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            throw new EntityNotFoundException("100", "Entity Not Found");
         }
     }
 }
