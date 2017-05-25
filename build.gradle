@@ -35,8 +35,19 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-mobile')
 	compile('org.postgresql:postgresql:9.3-1104-jdbc4')
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+	compile('io.jsonwebtoken:jjwt:0.7.0')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.security:spring-security-test:4.0.1.RELEASE')
+	testCompile("com.jayway.restassured:rest-assured:2.9.0")
+	testCompile('com.h2database:h2')
+}
+
+task unitTest( type: Test ) {
+	exclude 'com/example/integration/**'
+}
+
+task integrationTest(type: Test) {
+	include 'com/example/integration/**'
 }
 
 task buildDocker(type: Docker, dependsOn: build) {      // this task will build our Docker image

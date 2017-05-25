@@ -12,6 +12,13 @@ public class Product {
     private Integer productId;
     private String productName;
 
+    public Product() {
+    }
+
+    public Product(String productName) {
+        this.productName = productName;
+    }
+
     public Integer getProductId() {
         return productId;
     }
