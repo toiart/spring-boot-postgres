@@ -68,7 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private String[] getPublicPaths() {
         return new String[]{
                 "/auth",
-                "/version"
+                "/version",
+                "/config"
         };
     }
 
