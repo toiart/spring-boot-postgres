@@ -41,7 +41,6 @@ public class AuthenticationRestController {
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
-        System.out.println("auth start ");
         // Perform the security
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -49,7 +48,6 @@ public class AuthenticationRestController {
                         authenticationRequest.getPassword()
                 )
         );
-        System.out.println("auth 1 " + authentication.isAuthenticated());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // Reload password post-security so we can generate token
