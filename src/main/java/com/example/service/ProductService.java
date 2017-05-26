@@ -23,7 +23,7 @@ public class ProductService {
     }
 
     public List<Product> getProductList() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     @Transactional(rollbackFor = Exception.class)
